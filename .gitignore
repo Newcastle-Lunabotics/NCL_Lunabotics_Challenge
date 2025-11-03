@@ -1,0 +1,27 @@
+*.exe
+*__pycache__/
+.env
+.DS_Store
+node_modules/
+.vscode/
+dist/
+build/
+.idea/
+*.log
+coverage/
+*.bak
+*.tmp
+*.swp
+
+# Ignore latex generated files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+
