@@ -1,138 +1,175 @@
-NCL Example ROS 2 Pub/Sub (Humble)
+NCL ROS 2 Example: Publisher / Subscriber (Humble)
 
-This is a minimal working example ROS 2 package for the NCL Lunabotics team.
+This package is a minimal, fully working ROS 2 example for the
+Newcastle University Lunabotics Challenge robot.
 
-It shows:
+It is intended as:
 
-how to create a ROS 2 Python package
+a learning reference for new team members
 
-a talker node that publishes messages
+a template for creating future ROS 2 packages
 
-a listener node that subscribes and prints messages
+a sanity-check that your ROS 2 workspace is set up correctly
 
-how to build + run it in a workspace
+What this package demonstrates
 
-This package is meant as the template for new team members.
+This package shows:
 
-What this package contains
+how a ROS 2 Python package is structured
+
+how to write a publisher node
+
+how to write a subscriber node
+
+how nodes communicate using topics
+
+how to build and run nodes inside a workspace
+
+Package overview
 
 Package name: ncl_example_pubsub
-Nodes:
 
-talker → publishes std_msgs/String on /chatter
+Nodes included:
 
-listener → subscribes to /chatter and prints received messages
+Node	Purpose
+talker	Publishes text messages on a topic
+listener	Subscribes to the topic and prints messages
 
-Files to look at:
+Topic used:
 
-ncl_example_pubsub/talker.py
+/chatter   (type: std_msgs/String)
 
-ncl_example_pubsub/listener.py
-
-setup.py (registers nodes as executables)
+Folder structure
+ncl_example_pubsub/
+├── ncl_example_pubsub/
+│   ├── __init__.py
+│   ├── talker.py        # Publisher node
+│   └── listener.py      # Subscriber node
+├── resource/
+│   └── ncl_example_pubsub
+├── test/
+├── package.xml
+├── setup.py
+└── setup.cfg
 
 Requirements
 
-Ubuntu  (Ubuntu 22.04)
+Ubuntu (typically 22.04 for Humble)
 
-ROS 2 Humble installed
+ROS 2 Humble
 
 Python 3
 
-Check ROS is sourced:
+Git
+
+Check ROS is installed and sourced:
 
 source /opt/ros/humble/setup.bash
+echo $ROS_DISTRO
 
-Repo structure reminder
 
-This repository contains a ROS workspace inside:
+You should see:
 
-ros2_ws/
-  src/
-    ncl_example_pubsub/
-      ncl_example_pubsub/
-      package.xml
-      setup.py
+humble
 
-Step 1 — clone the repo
+Step 1 — Clone the repository
 cd ~
 git clone https://github.com/SahasT23/NCL_Lunabotics_Challenge.git
 cd NCL_Lunabotics_Challenge
 
-Step 2 — build the workspace
+Step 2 — Build the workspace
 
-Always build from the workspace root (ros2_ws):
+All ROS 2 packages live inside ros2_ws/src.
+
+Always build from the workspace root:
 
 cd ros2_ws
 source /opt/ros/humble/setup.bash
 colcon build
 
 
-If you only want to build this one package:
+To build only this package:
 
 colcon build --packages-select ncl_example_pubsub
 
-Step 3 — source the workspace overlay
+Step 3 — Source the workspace overlay
 
-This makes ROS aware of the newly built package:
+This makes ROS aware of newly built packages:
 
 source install/setup.bash
 
 
-Tip: you must do this in every new terminal (unless you add it to ~/.bashrc).
+You must do this every time you open a new terminal.
 
-Step 4 — run the nodes (2 terminals)
-Terminal A (listener)
+Step 4 — Run the example (two terminals)
+Terminal A — Listener
 cd ~/NCL_Lunabotics_Challenge/ros2_ws
 source /opt/ros/humble/setup.bash
 source install/setup.bash
 ros2 run ncl_example_pubsub listener
 
-Terminal B (talker)
+Terminal B — Talker
 cd ~/NCL_Lunabotics_Challenge/ros2_ws
 source /opt/ros/humble/setup.bash
 source install/setup.bash
 ros2 run ncl_example_pubsub talker
 
 
-You should see the listener printing messages.
+You should see messages printed in the listener terminal.
 
-Useful debug commands
+How ROS 2 communication works (simple explanation)
 
-List active topics:
+Talker node
 
-ros2 topic list
+creates a publisher
 
+sends messages on /chatter
 
-Watch the messages:
+Listener node
 
-ros2 topic echo /chatter
+subscribes to /chatter
 
+receives messages
 
-Node list:
+prints them to the terminal
+
+They do not talk directly — ROS handles message passing.
+
+Useful debugging commands
+
+List all active nodes:
 
 ros2 node list
 
 
-Info about a node:
+List all topics:
 
-ros2 node info /talker
+ros2 topic list
 
-How to create a new package (team template)
 
-Create packages inside:
-ros2_ws/src/
+Watch messages on a topic:
 
-Example:
+ros2 topic echo /chatter
 
-cd ~/NCL_Lunabotics_Challenge/ros2_ws/src
-ros2 pkg create <your_package_name> --build-type ament_python --dependencies rclpy std_msgs
+
+Get info about a node:
+
+ros2 node info /listener
+
+How to create your own package (team template)
+
+From the workspace src directory:
+
+cd ros2_ws/src
+ros2 pkg create my_package_name \
+  --build-type ament_python \
+  --dependencies rclpy std_msgs
 
 
 Then:
 
-add your node python file(s) into <your_package_name>/<your_package_name>/
+Put your node code in my_package_name/my_package_name/
 
-register them in setup.py under entry_points
+Register the node in setup.py
 
-build + source + run
+Build + source + run
