@@ -1,45 +1,27 @@
-NCL ROS 2 Example: Publisher / Subscriber (Humble)
+# NCL ROS 2 Example: Publisher / Subscriber (Humble)
 
 This package is a minimal, fully working ROS 2 example for the
-Newcastle University Lunabotics Challenge robot.
+Newcastle University Lunabotics team.
 
-It is intended as:
+It serves as:
 
 a learning reference for new team members
 
-a template for creating future ROS 2 packages
+a template for future ROS 2 packages
 
-a sanity-check that your ROS 2 workspace is set up correctly
+a quick way to verify your ROS 2 setup works
 
-What this package demonstrates
-
-This package shows:
-
-how a ROS 2 Python package is structured
-
-how to write a publisher node
-
-how to write a subscriber node
-
-how nodes communicate using topics
-
-how to build and run nodes inside a workspace
-
-Package overview
+## Package Overview
 
 Package name: ncl_example_pubsub
 
-Nodes included:
+Included nodes
+talker	Publishes messages periodically (published /chatter topic)
+listener	Subscribes and prints messages
+Topic used
+/chatter   (std_msgs/String)
 
-Node	Purpose
-talker	Publishes text messages on a topic
-listener	Subscribes to the topic and prints messages
-
-Topic used:
-
-/chatter   (type: std_msgs/String)
-
-Folder structure
+## Folder Structure
 ncl_example_pubsub/
 ├── ncl_example_pubsub/
 │   ├── __init__.py
@@ -52,9 +34,9 @@ ncl_example_pubsub/
 ├── setup.py
 └── setup.cfg
 
-Requirements
+## Requirements
 
-Ubuntu (typically 22.04 for Humble)
+Ubuntu (22.04)
 
 ROS 2 Humble
 
@@ -68,7 +50,7 @@ source /opt/ros/humble/setup.bash
 echo $ROS_DISTRO
 
 
-You should see:
+Expected output:
 
 humble
 
@@ -94,12 +76,12 @@ colcon build --packages-select ncl_example_pubsub
 
 Step 3 — Source the workspace overlay
 
-This makes ROS aware of newly built packages:
+You must do this before running nodes:
 
 source install/setup.bash
 
 
-You must do this every time you open a new terminal.
+Do this every time you open a new terminal.
 
 Step 4 — Run the example (two terminals)
 Terminal A — Listener
@@ -115,9 +97,9 @@ source install/setup.bash
 ros2 run ncl_example_pubsub talker
 
 
-You should see messages printed in the listener terminal.
+You should see messages appearing in the listener terminal.
 
-How ROS 2 communication works (simple explanation)
+## How ROS 2 communication works (simple)
 
 Talker node
 
@@ -133,30 +115,30 @@ receives messages
 
 prints them to the terminal
 
-They do not talk directly — ROS handles message passing.
+Nodes do not talk directly — ROS handles all messaging.
 
-Useful debugging commands
+## Useful Debug Commands
 
-List all active nodes:
+List running nodes:
 
 ros2 node list
 
 
-List all topics:
+List active topics:
 
 ros2 topic list
 
 
-Watch messages on a topic:
+View messages on a topic:
 
 ros2 topic echo /chatter
 
 
-Get info about a node:
+Inspect a node:
 
 ros2 node info /listener
 
-How to create your own package (team template)
+## Creating Your Own ROS 2 Package (Template)
 
 From the workspace src directory:
 
@@ -168,8 +150,8 @@ ros2 pkg create my_package_name \
 
 Then:
 
-Put your node code in my_package_name/my_package_name/
+Add node code in my_package_name/my_package_name/
 
-Register the node in setup.py
+Register nodes in setup.py
 
-Build + source + run
+Build → source → run
