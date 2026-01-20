@@ -24,4 +24,8 @@ coverage/
 *.fdb_latexmk
 *.synctex.gz
 
-
+# ROS2 / colcon (workspace outputs)
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+ros2_ws/.colcon/
