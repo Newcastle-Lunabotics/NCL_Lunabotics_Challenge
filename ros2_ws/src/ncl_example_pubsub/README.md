@@ -26,15 +26,25 @@ listener: Subscribes and prints messages (subscribes /chatter topic)
 
 ## Folder Structure
 ncl_example_pubsub/
+
 ├── ncl_example_pubsub/
+
 │   ├── __init__.py
+
 │   ├── talker.py        # Publisher node
+
 │   └── listener.py      # Subscriber node
+
 ├── resource/
+
 │   └── ncl_example_pubsub
+
 ├── test/
+
 ├── package.xml
+
 ├── setup.py
+
 └── setup.cfg
 
 ## Requirements
