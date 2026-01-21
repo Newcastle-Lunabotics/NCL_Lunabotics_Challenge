@@ -19,7 +19,8 @@ Included nodes
 talker	Publishes messages periodically (published /chatter topic)
 
 listener	Subscribes and prints messages
-Topic used
+
+### Topic used
 /chatter   (std_msgs/String)
 
 ## Folder Structure
