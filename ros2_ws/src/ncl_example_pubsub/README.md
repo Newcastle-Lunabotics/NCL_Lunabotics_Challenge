@@ -15,7 +15,7 @@ a quick way to verify your ROS 2 setup works
 
 ### Package name: ncl_example_pubsub
 
-###Included nodes
+### Included nodes
 
 talker:	Publishes messages periodically (publishes /chatter topic)
 
