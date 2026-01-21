@@ -13,12 +13,13 @@ a quick way to verify your ROS 2 setup works
 
 ## Package Overview
 
-Package name: ncl_example_pubsub
+### Package name: ncl_example_pubsub
 
-Included nodes
-talker	Publishes messages periodically (published /chatter topic)
+###Included nodes
 
-listener	Subscribes and prints messages
+talker:	Publishes messages periodically (publishes /chatter topic)
+
+listener: Subscribes and prints messages (subscribes /chatter topic)
 
 ### Topic used
 /chatter   (std_msgs/String)
