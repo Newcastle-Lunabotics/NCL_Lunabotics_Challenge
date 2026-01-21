@@ -8,7 +8,7 @@ This repository contains the software for the Newcastle University Lunabotics ro
 
 ## Requirements
 - Ubuntu (VERSION TBC)
-- ROS2 (Humbe TBC)
+- ROS2 (TBC)
 - colcon
 
 ## Build Instructions
@@ -17,3 +17,4 @@ cd ros2_ws
 colcon build
 source install/setup.bash
   
+
