@@ -26,7 +26,7 @@ orb shell lunabotics
 
 Your prompt should change to `ubuntu@lunabotics:~$`
 
-# 2. Install ROS2 Humble
+### 2. Install ROS2 Humble
 ```bash
 # Update and install prerequisites
 sudo apt update && sudo apt upgrade -y
