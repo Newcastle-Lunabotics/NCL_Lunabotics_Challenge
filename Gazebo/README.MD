@@ -11,9 +11,8 @@ This guide provides the full setup for the Gazebo sim using **ROS 2 Humble** and
 ---
 
 ## SECTION 2: EXECUTION (4 TERMINALS)
-
-**Terminal 1: Start Gazebo**
 ```bash
+**Terminal 1: Start Gazebo**
 ign gazebo newcastle_world.sdf
 
 **Terminal 2: Spawn Robot**
@@ -27,10 +26,19 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 
 ## SECTION 3: RVIZ (SEE WHAT ROBOT SEES)
-1.Open terminal: rviz2
-2.Tell rosw2 how the robot parts are connected: ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(cat ~/Documents/robot.urdf)"
-3. Fixed Frame: Change map to base_link.
+```bash
+1.Start RVIZ in terminal: 
+rviz2
 
-4. Add: Click "Add" -> "LaserScan".
+2.Tell ros2 how the robot parts are connected (terminal): 
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(cat ~/Documents/robot.urdf)"
 
-5. Topic: Set to /scan.
+3. Fixed Frame: 
+Change map to base_link.
+
+4. Add topic: 
+Click "Add" -> "LaserScan".
+
+5. Select Topic: 
+Set to /scan.
+```
