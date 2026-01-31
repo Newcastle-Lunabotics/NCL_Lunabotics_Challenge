@@ -9,6 +9,7 @@ This repository contains the software for the Newcastle University Lunabotics ro
 ## Requirements
 - Ubuntu 22.04
 - ROS2 Humble
+- Gazebo Ignition
 - colcon
 
 ## Build Instructions
@@ -16,11 +17,8 @@ This repository contains the software for the Newcastle University Lunabotics ro
 cd ros2_ws
 colcon build
 source install/setup.bash
-
-## Gazebo Simuatlions
-Gazebo Version: Gazebo Ignition
-
 ```
+
 
 
 
