@@ -24,7 +24,7 @@ ros2 run ros_gz_bridge parameter_bridge /cmd_vel@geometry_msgs/msg/Twist]ignitio
 
 **Terminal 4: Keyboard Control**
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
-
+```
 
 ## SECTION 3: RVIZ (SEE WHAT ROBOT SEES)
 1.Open terminal: rviz2
