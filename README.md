@@ -12,7 +12,7 @@ This repository contains the software for the Newcastle University Lunabotics ro
 - colcon
 
 ## Build Instructions
-``bash
+```bash
 cd ros2_ws
 colcon build
 source install/setup.bash
@@ -20,6 +20,7 @@ source install/setup.bash
 ## Gazebo Simuatlions
 Gazebo Version: Gazebo Ignition
 
-  
+```
+
 
 
