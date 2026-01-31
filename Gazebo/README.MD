@@ -17,15 +17,12 @@ This guide provides the full setup for the Gazebo sim using **ROS 2 Humble** and
 ign gazebo newcastle_world.sdf
 
 **Terminal 2: Spawn Robot**
-```bash
 ros2 run ros_gz_sim create -file robot.urdf -name my_box_bot -z 0.5
 
 **Terminal 3: Start Bridge** (Gazebo Topics > ROS2 Topics)
-```bash
 ros2 run ros_gz_bridge parameter_bridge /cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist /scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan
 
 **Terminal 4: Keyboard Control**
-```bash
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 
 
