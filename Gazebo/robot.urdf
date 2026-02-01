@@ -6,7 +6,8 @@
   <joint name="base_footprint_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
-    <origin xyz="0 0 0.1" rpy="0 0 0"/> </joint>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/> 
+  </joint>
 
   <link name="base_link">
     <visual>
@@ -120,7 +121,27 @@
   <joint name="lidar_joint" type="fixed">
     <parent link="base_link"/>
     <child link="lidar_link"/>
-    <origin xyz="0 0 0.15" rpy="0 0 0"/> </joint>
+    <origin xyz="0 0 0.15" rpy="0 0 0"/> 
+  </joint>
+
+  <link name="camera_link">
+    <visual>
+      <geometry><box size="0.05 0.05 0.05"/></geometry>
+      <material name="red"><color rgba="1 0 0 1"/></material>
+    </visual>
+    <collision>
+      <geometry><box size="0.05 0.05 0.05"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/><inertia ixx="0.00001" ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001"/>
+    </inertial>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+    <origin xyz="0.3 0 0.1" rpy="0 0 0"/> 
+  </joint>
 
   <gazebo>
     <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
@@ -145,6 +166,7 @@
   <gazebo reference="lidar_link">
     <sensor name="gpu_lidar" type="gpu_lidar">
       <update_rate>10</update_rate>
+      <visualize>true</visualize>
       <lidar>
         <scan>
           <horizontal>
@@ -164,4 +186,26 @@
     </sensor>
   </gazebo>
 
+  <gazebo reference="camera_link">
+    <sensor name="camera" type="camera">
+      <pose> 0 0 0 0 0 0 </pose>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <camera>
+        <horizontal_fov>1.089</horizontal_fov>
+        <image>
+          <format>R8G8B8</format>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>8.0</far>
+        </clip>
+      </camera>
+      <topic>camera/image_raw</topic>
+      <gz_frame_id>camera_link</gz_frame_id>
+    </sensor>
+  </gazebo>
+	
 </robot>
