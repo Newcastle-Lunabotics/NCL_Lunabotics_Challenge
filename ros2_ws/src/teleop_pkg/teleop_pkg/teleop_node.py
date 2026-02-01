@@ -59,7 +59,7 @@ class TeleopNode(Node):
         This is tricky because normally terminal waits for Enter
         """
         # Save current terminal settings
-        settings = termios.tcgetattr(sys.stdin)
+        settings = termios.tcgetattr(sys.stdin.fileno())
         
         try:
             # Change terminal to raw mode (reads keys immediately)
@@ -67,7 +67,7 @@ class TeleopNode(Node):
             key = sys.stdin.read(1)
         finally:
             # Restore terminal settings
-            termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
+            termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, settings)
         
         return key
     
