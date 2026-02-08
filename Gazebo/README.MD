@@ -19,7 +19,17 @@ Terminal 2: Spawn Robot
 ros2 run ros_gz_sim create -file robot.urdf -name my_box_bot
 
 Terminal 3: Start Bridge (Gazebo Topics > ROS2 Topics)
-ros2 run ros_gz_bridge parameter_bridge /cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist /scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan /camera/image_raw@sensor_msgs/msg/Image[ignition.msgs.Image /joint_states@sensor_msgs/msg/JointState[ignition.msgs.JointState /odom@nav_msgs/msg/Odometry[ignition.msgs.Odometry --ros-args -p use_sim_time:=true
+ros2 run ros_gz_bridge parameter_bridge \
+  /cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist \
+  /scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan \
+  /odom@nav_msgs/msg/Odometry@gz.msgs.Odometry \
+  /imu@sensor_msgs/msg/Imu@gz.msgs.IMU \
+  /joint_states@sensor_msgs/msg/JointState@gz.msgs.Model \
+  /model/my_box_bot/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V \
+  /clock@rosgraph_msgs/msg/Clock@gz.msgs.Clock \
+  /camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image \
+  /camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo \
+  --ros-args -r /model/my_box_bot/tf:=/tf -p use_sim_time:=true
 
 Terminal 4: Keyboard Control
 ros2 run teleop_pkg teleop_node 
@@ -41,4 +51,9 @@ Click "Add" -> "LaserScan".
 
 5. Select Topic: 
 Set to /scan.
+```
+
+## SECTION 4: SLAM (BUILD A MAP)
+```bash
+ros2 launch slam_toolbox online_async_launch.py use_sim_time:=true
 ```
