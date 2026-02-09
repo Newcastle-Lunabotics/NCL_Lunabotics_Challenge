@@ -1,0 +1,39 @@
+# Robot Configuration Parameters
+
+# Used by launch files to configure nodes
+
+# Teleop Node Parameters
+
+teleop_node:
+
+  ros__parameters:
+
+    linear_speed: 0.5        # m/s - forward/backward
+
+    angular_speed: 1.0       # rad/s - turning
+
+    
+
+# Base Controller Parameters (for when ready)
+
+base_controller:
+
+  ros__parameters:
+
+    wheel_radius: 0.1        # meters
+
+    wheel_base: 0.5          # meters between wheels
+
+    max_speed: 1.0           # m/s
+
+# LiDAR Parameters (for when ready)
+
+lidar_driver:
+
+  ros__parameters:
+
+    scan_rate: 10            # Hz
+
+    min_range: 0.1           # meters
+
+    max_range: 10.0          # meters
